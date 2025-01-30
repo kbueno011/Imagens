@@ -1,0 +1,29 @@
+:root {
+    --imagem-fundo: url('./img/planeta-terra.webp'); /* Imagem inicial */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--imagem-fundo);
+    transition: 1s;
+}
+
+
+#planeta {
+    padding: 8px 12px;
+    font-size: 22px;
+}
+
+#trocar-imagem {
+    padding: 8px 12px;
+    font-size: 24px;
+}
