@@ -3,7 +3,6 @@
 const botaoTrocarImagem = document.getElementById("trocar-imagem");
 const inputPlaneta = document.getElementById("planeta");
 
-
 const planetas = {
     "terra": "./img/planeta-terra.webp",
     "marte": "./img/planeta-marte.jpg",
@@ -16,19 +15,26 @@ const planetas = {
 };
 
 // Função para trocar a imagem pelo nome do planeta digitado
-function trocarImagemPorNome(event) {
-    if (event.key === "Enter") {
-        const planetaDigitado = inputPlaneta.value();
-        if (planetas[planetaDigitado]) {
-            document.documentElement.style.setProperty("--imagem-fundo", `url('${planetas[planetaDigitado]}')`);
-        } else {
-            alert("Planeta não encontrado! Tente novamente.");
-        }
+function trocarImagemPorNome() {
+    const planetaDigitado = inputPlaneta.value.toLowerCase().trim(); // Remover espaços extras
+    if (planetas[planetaDigitado]) {
+        document.documentElement.style.setProperty("--imagem-fundo", `url('${planetas[planetaDigitado]}')`);
+    } else {
+        alert("Planeta não encontrado!");
     }
 }
 
+// Função para trocar a imagem aleatoriamente ao clicar no botão
+function trocarImagemAleatoria() {
+    const nomesPlanetas = Object.keys(planetas);
+    const planetaAleatorio = nomesPlanetas[Math.floor(Math.random() * nomesPlanetas.length)];
+    document.documentElement.style.setProperty("--imagem-fundo", `url('${planetas[planetaAleatorio]}')`);
+}
 
-
-
-
-inputPlaneta.addEventListener("keypress", trocarImagemPorNome);
+// Eventos
+inputPlaneta.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        trocarImagemPorNome();
+    }
+});
+botaoTrocarImagem.addEventListener("click", trocarImagemAleatoria);
